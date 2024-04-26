@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-[[ "$1" == "" ]] && echo "Usage $0 git_tag [docker_repo/image]" && exit 1 
+[[ "$1" == "" ]] && echo "Usage: $0 git_tag [docker_repo/image]" && exit 1 
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 BDIR=$(pwd)
@@ -27,3 +27,8 @@ docker build .  -t $REPO:$DOCKER_VERSION
 rm Fulcrum
 docker push $REPO:$DOCKER_VERSION
 
+echo "Fulcrum image $REPO:$DOCKER_VERSION pushed. "
+echo ; echo 
+echo "if it is the latest version, RUN the following commands: "
+echo "docker tag $REPO:$DOCKER_VERSION $REPO:latest"
+echo "docker push $REPO:latest"
